@@ -1,0 +1,70 @@
+# Load a hypothetical data and Preproces
+import pandas as pd
+
+# Create a hypothetical dataset
+Road = pd.DataFrame({
+    'weather': ['Clear', 'Rainy', 'Foggy', 'Clear', 'Rainy', 'Foggy'],
+    'time_of_day': ['Morning', 'Afternoon', 'Evening', 'Night', 'Morning', 'Afternoon'],
+    'road_type': ['Highway', 'Urban', 'Rural', 'Highway', 'Urban', 'Rural'],
+    'vehicle_type': ['Car', 'Truck', 'Motorcycle', 'Car', 'Car', 'Truck'],
+    'traffic_volume': [30, 50, 20, 10, 40, 25],
+    'accident_severity': [1, 2, 3, 1, 2, 3]  # 1: Minor, 2: Serious, 3: Fatal
+})
+
+# Preprocess the data
+
+Road = pd.get_dummies(Road, columns=['weather', 'time_of_day', 'road_type', 'vehicle_type'], drop_first=True)
+
+
+##########################################################################
+
+#
+
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.linear_model import LinearRegression
+Road = pd.read_csv('/content/Road.csv')
+
+# Define predictor (independent) and target (dependent) variables
+X = Road('Number_of_Casualities')  # Independent variables
+y = Road['Accident_Severity_Score']  # Dependent variable
+
+# Visualize the change in the variables 
+Road.plot(x = 'Number_of_Casualities', y = 'Accident_Severity_Score', style = '0')
+plt.xlabel('Number of Casuality')
+plt.ylabel('Accident Severity Score')
+plt.title('Scatter Plot of Number of Casualities vs Accident Severity Score')
+plt.show()
+
+# Create and fit the linear regression model
+regressor = LinearRegression()
+regressor.fit(X, y)
+
+# Plot the data points and the regression line
+plt.scatter(x, y, color = 'blue', label = 'Data Points')
+plt.plot(x, regressor.predict(x), color = 'red', linewidth = 2, label = 'Regression Line')
+plt.xlabel('Number of Casualities')
+plt.ylabel('Accident Severity Score')
+plt.title('Linear Regression: Number of Casualties vs Accident Severity Score')
+plt.legend()
+plt.show()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
