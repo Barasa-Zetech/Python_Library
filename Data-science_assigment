@@ -1,0 +1,16 @@
+# Load a hypothetical data and Preproces
+import pandas as pd
+
+# Create a hypothetical dataset
+Road = pd.DataFrame({
+    'weather': ['Clear', 'Rainy', 'Foggy', 'Clear', 'Rainy', 'Foggy'],
+    'time_of_day': ['Morning', 'Afternoon', 'Evening', 'Night', 'Morning', 'Afternoon'],
+    'road_type': ['Highway', 'Urban', 'Rural', 'Highway', 'Urban', 'Rural'],
+    'vehicle_type': ['Car', 'Truck', 'Motorcycle', 'Car', 'Car', 'Truck'],
+    'traffic_volume': [30, 50, 20, 10, 40, 25],
+    'accident_severity': [1, 2, 3, 1, 2, 3]  # 1: Minor, 2: Serious, 3: Fatal
+})
+
+# Preprocess the data
+
+Road = pd.get_dummies(Road, columns=['weather', 'time_of_day', 'road_type', 'vehicle_type'], drop_first=True)
